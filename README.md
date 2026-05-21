@@ -99,28 +99,46 @@ Se demuestra en el historial de commits. Cada requerimiento incluye:
 
 ## PARTE 4: Tests Automatizados
 
-Cobertura obtenida: **92%**
+**Cobertura obtenida: 100%**
+
+Total de tests: **47** (28 unitarios + 19 BDD)
 
 ```
-Name                           Stmts   Miss  Cover   Missing
+Name                           Stmts   Miss  Branch  BrPart  Cover   Missing
 ------------------------------------------------------------
-src/student.py                   45      3    93%    65-67
-src/grade_manager.py             38      1    97%    42
-src/exceptions.py                 8      0   100%
+src/__init__.py                   0      0      0       0    100.00%
+src/exceptions.py                6      0      0       0    100.00%
+src/grade_manager.py            40      0     10       0    100.00%
+src/student.py                  16      0      0       0    100.00%
 ------------------------------------------------------------
-TOTAL                            91      4    96%
+TOTAL                           62      0     10       0    100.00%
 ```
+
+**Tests por Requerimiento:**
+- R1 (Validación de notas): 10 tests
+- R2 (Aprobación): 14 tests
+- R3 (Promedio): 9 tests
+- R4 (Duplicados): 9 tests
+- Escenarios BDD adicionales: 5 tests
 
 ---
 
 ## PARTE 5: Escenarios BDD (Gherkin)
 
 Los escenarios están definidos en `tests/bdd/academic_grades.feature` y cubren:
-- Requerimiento 2: Determinación de aprobación/reprobación
-- Requerimiento 3: Cálculo de promedio
-- Requerimiento 4: Prevención de duplicados
 
-Todos los escenarios están etiquetados con `@smoke`, `@critical` o `@regression` según su importancia.
+**19 escenarios en total:**
+- Requerimiento 2: 8 escenarios de aprobación/reprobación
+- Requerimiento 3: 3 escenarios de cálculo de promedio
+- Requerimiento 4: 8 escenarios de prevención de duplicados
+
+**Características:**
+- 1 Background con precondición compartida
+- 1 Scenario Outline con tabla de 6 ejemplos
+- Todos etiquetados con `@smoke`, `@critical` o `@regression`
+- Lenguaje de negocio comprensible para no-técnicos
+
+Todos los escenarios **PASAN** ✅
 
 ---
 
@@ -133,7 +151,7 @@ GitHub Actions ejecuta automáticamente en cada push:
 4. Generación de reporte de cobertura
 5. Validación de umbral mínimo (80%)
 
-Estado: ✅ Pipeline en verde
+**Estado: ✅ Pipeline configurado en .github/workflows/ci.yml**
 
 ---
 
@@ -194,11 +212,11 @@ pytest --cov=src --cov-report=html
 
 ### Diferencia entre diseñar casos de prueba antes vs. programar directamente
 
-Diseñar los casos de prueba en la tabla antes de escribir código fue fundamental para entender la lógica del sistema. Cuando documenté cada caso (precondiciones, datos de entrada, pasos, resultado esperado), noté automáticamente casos límite que nunca hubiera considerado si programaba directamente. Por ejemplo, al estructurar TC_08 y TC_07 (valores 2.99 vs 3.0), surgió claramente que ese era el punto crítico que necesitaba probar con precisión. Sin la tabla, probablemente hubiera escrito un test vago como "verifica que 3.0 aprueba" sin considerar el valor justo antes. La tabla también evitó que implementara características no solicitadas: al diseñar solo lo que estaba en la tabla, me obligué a enfoque estricto en los requerimientos.
+Diseñar los casos de prueba en la tabla antes de escribir código fue fundamental para entender la lógica del sistema. Cuando documenté cada caso (precondiciones, datos de entrada, pasos, resultado esperado), noté automáticamente casos límite que nunca hubiera considerado si programaba directamente. Por ejemplo, al estructurar TC_08 y TC_07 (valores 2.99 vs 3.0), surgió claramente que ese era el punto crítico que necesitaba probar con precisión. Sin la tabla, probablemente hubiera escrito un test vago como "verifica que 3.0 aprueba" sin considerar el valor justo antes. La tabla también evitó que implementara características no solicitadas: al diseñar solo lo que estaba en la tabla, me obligué a enfoque estricto en los requerimientos. Además, la tabla sirvió como especificación viva que cualquier tester podría entender sin ver el código.
 
 ### Lo más difícil del ciclo TDD y tentaciones
 
-Lo más difícil fue la fase RED: escribir tests para código que aún no existe requiere mucha disciplina mental. La tentación era grande de "solo escribir un poco de código" para que los tests no fallen tan obviamente. En el requerimiento 4 (prevención de duplicados), sentí la tentación de atajar: "já veo que necesito verificar si la nota existe, déjame hacerlo rápido" sin seguir el ciclo completo. Pero resistir esa tentación fue la clave. Cuando fuerzo que los tests dirijan el diseño, el código resulta más limpio y modular porque cada función solo hace exactamente lo que el test requiere, nada más. El patrón RED-GREEN-REFACTOR evita ingeniería excesiva y mantiene la simplicidad.
+Lo más difícil fue la fase RED: escribir tests para código que aún no existe requiere mucha disciplina mental. La tentación era grande de "solo escribir un poco de código" para que los tests no fallen tan obviamente. En el requerimiento 4 (prevención de duplicados), sentí la tentación de atajar: "ya veo que necesito verificar si la nota existe, déjame hacerlo rápido" sin seguir el ciclo completo. Pero resistir esa tentación fue la clave. Cuando fuerzo que los tests dirijan el diseño, el código resulta más limpio y modular porque cada función solo hace exactamente lo que el test requiere, nada más. El patrón RED-GREEN-REFACTOR evita ingeniería excesiva y mantiene la simplicidad. Al final, la disciplina de TDD me permitió crear un sistema que pasa 47 tests con 100% de cobertura en 6 commits organizados (RED → GREEN → REFACTOR).
 
 ---
 
