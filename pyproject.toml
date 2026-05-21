@@ -1,0 +1,23 @@
+[project]
+name = "academic-grades-system"
+version = "0.1.0"
+description = "Sistema de registro de notas académicas con TDD y BDD"
+requires-python = ">=3.10"
+dependencies = [
+    "pytest>=7.0.0",
+    "pytest-bdd>=6.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "--cov=src --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+branch = true
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+precision = 2
+skip_covered = false
