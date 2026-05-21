@@ -1,0 +1,71 @@
+📦 PROYECTO: SISTEMA DE NOTAS ACADÉMICAS
+========================================
+
+preparcial/
+│
+├── 📄 DOCUMENTACIÓN (Lee estos primero)
+│   ├── STATUS.md ⭐ ← ESTADO COMPLETO DEL PROYECTO
+│   ├── README.md ⭐ ← DOCUMENTACIÓN PRINCIPAL (todas las partes)
+│   ├── QUICKSTART.md ← Guía rápida de ejecución
+│   ├── COVERAGE.md ← Detalle de cobertura
+│   └── PROJECT_SUMMARY.md ← Resumen ejecutivo
+│
+├── 📂 src/ (CÓDIGO DE PRODUCCIÓN)
+│   ├── __init__.py
+│   ├── exceptions.py (Excepciones personalizadas)
+│   ├── grade_manager.py (Gestión de notas - 40 líneas)
+│   └── student.py (Entidad estudiante - 16 líneas)
+│
+├── 📂 tests/ (TODOS LOS TESTS - 51 TOTAL)
+│   │
+│   ├── 📂 unit/ (Tests unitarios - 32 tests)
+│   │   ├── test_student_grades.py (10 tests - R1: Validación)
+│   │   ├── test_approval_system.py (7 tests - R2: Aprobación)
+│   │   ├── test_average_calculation.py (6 tests - R3: Promedio)
+│   │   ├── test_duplicate_prevention.py (5 tests - R4: Duplicados)
+│   │   └── test_integration.py (4 tests - Integración)
+│   │
+│   └── 📂 bdd/ (Tests BDD - 19 escenarios)
+│       ├── academic_grades.feature (Escenarios Gherkin)
+│       ├── test_academic_grades.py (Step definitions)
+│       └── conftest.py (Configuración pytest)
+│
+├── 📂 .github/workflows/
+│   └── ci.yml (Pipeline GitHub Actions)
+│
+├── ⚙️ CONFIGURACIÓN
+│   ├── pyproject.toml (Configuración Python)
+│   ├── uv.lock (Lock file de dependencias)
+│   └── .gitignore (Archivos ignorados)
+│
+├── 📚 REFERENCIA
+│   └── preparcial.MD (Documento original de actividad)
+│
+└── 🔍 .git/ (Historial de commits - 11 commits)
+
+
+MÉTRICAS FINALES
+================
+✅ Tests:        51 (32 unitarios + 4 integración + 19 BDD)
+✅ Cobertura:    100% (62 statements, 10 branches)
+✅ Commits:      11 (todos con propósito claro)
+✅ Tiempo:       0.06 segundos
+✅ Requerimientos: 4/4 completados
+✅ Estado:       LISTO PARA PRESENTACIÓN
+
+
+CICLO TDD EN COMMITS
+====================
+88a6604 🔴 RED: Tests sin implementación
+ab4a6bd 🟢 GREEN: Código mínimo
+b941771 🔵 REFACTOR: Mejoras de código
+0f44582 PART 4: BDD + step definitions
+... (7 commits más de documentación)
+
+
+CÓMO USAR
+=========
+1. uv sync              # Instalar dependencias
+2. uv run pytest tests/ -v     # Ejecutar tests
+3. Ver: STATUS.md o README.md  # Leer documentación
+
